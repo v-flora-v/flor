@@ -269,7 +269,24 @@ reiniciar.addEventListener('click', againPage)
 
 function againPage() {
     location.reload()
+    
 }
+function moveRestart() {
+  console.log('iniciar el juego');
+  
+  if ((playerPosition.r - elementsSize) > canvasSize) {
+    console.log('OUT');
+  } else {
+    playerPosition.y += elementsSize;
+    startGame();
+  }
+}
+
+iniciar.addEventListener('click', againPage)
+function againPage() {
+  location.reload()
+}
+
 
 
 
