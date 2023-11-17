@@ -70,10 +70,24 @@ function startGame() {
   const map = maps[level];
 
   if (!map) {
+    let victoryMsg = document.createElement('div');
+    victoryMsg.style.position = 'fixed';
+    victoryMsg.style.top = '50%';
+    victoryMsg.style.left = '50%';
+    victoryMsg.style.transform = 'translate(-50%, -50%)';
+    victoryMsg.style.fontSize = '15em';
+    victoryMsg.style.color = 'gold';
+    victoryMsg.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+    victoryMsg.style.padding = '0.1em';
+    victoryMsg.style.borderRadius = '0.5em';
+    victoryMsg.style.zIndex = '1000';
+    victoryMsg.innerHTML = `
+        <p>GANASTE🥇</p>
+    `;
+    document.body.appendChild(victoryMsg);
     gameWin();
-    return;
-  }
-
+     return;
+ }
   if (!timeStart) {
     timeStart = Date.now();
     timeInterval = setInterval(showTime, 100);
@@ -249,9 +263,19 @@ function moveDown() {
     playerPosition.y += elementsSize;
     startGame();
   }
+
 }
 reiniciar.addEventListener('click', againPage)
 
 function againPage() {
     location.reload()
 }
+
+
+
+const playSound = function() {
+  var sonido = new Audio("musica.mp3");
+  sonido.play();
+  document.removeEventListener('click', playSound);
+}
+document.addEventListener('click', playSound)
